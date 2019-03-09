@@ -7,11 +7,16 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <nav>
-          <Link to='/'>Home</Link>
-          <Link to='/experiments'>Experiments</Link>
-        </nav>
-        <h1>Homepage</h1>
+      <nav>
+        <Link to='/'>Home</Link>
+        <Link to='/experiments'>Experiments</Link>
+      </nav>
+      <Route
+          exact path='/'
+          render={() => (
+              <h1>Homepage</h1>
+              )}
+        />
         <Route
           path='/experiments'
           render={() => (

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getExperimentsAsync } from '../actions/actionCreators';
+import Experiment from './Experiment';
 
 export class Experiments extends React.Component {
   componentDidMount() {
@@ -15,7 +16,13 @@ export class Experiments extends React.Component {
             <div>
                 {
                 this.props.experiments.map(experiment => (
-                    <p>{experiment.name}</p>
+                    <Experiment
+                        key={experiment.id}
+                        title={experiment.title}
+                        funnel={experiment.funnel}
+                        type={experiment.type}
+                        tools={experiment.tools}
+                    />
                 ))
                 }
             </div>
