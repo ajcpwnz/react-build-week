@@ -1,30 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './App.css';
+import Experiments from './components/Experiments';
 
-import { bindActionCreators } from 'redux';
-import { getExperimentsAsync } from './actions/actionCreators'
-
-class App extends Component {
-  componentDidMount() {
-    this.props.getExperimentsAsync();
-  }
-
+export default class App extends Component {
   render() {
     return (
-      <h1>Croissant Experiments</h1>
+      <>
+        <h1>Homepage</h1>
+        <Experiments />
+      </>
     );
   }
 }
-
-const mapStateToProps = state => ({
-  experiments: state.experiments
-});
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getExperimentsAsync
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
