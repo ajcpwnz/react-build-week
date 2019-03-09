@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
+import Experiments from './components/Experiments';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <h1>Smoothie</h1>
+      <>
+        <h1>Homepage</h1>
+        <Experiments />
+      </>
     );
   }
 }
-
-export default App;
