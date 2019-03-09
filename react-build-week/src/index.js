@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { combineReducers, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { experiments } from './reducers/experiments';
 
@@ -12,18 +13,12 @@ const rootReducer = combineReducers({
 
 const store = createStore(
     rootReducer,
-    {
-        experiments: [
-            { id: null,
-              title: null,
-              description: null
-            }
-        ],
-    },
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    {},
+    compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    ),
 );
-
-console.log(store.getState());
 
 ReactDOM.render(
 <Provider store={store}>
