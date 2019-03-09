@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Experiments from './components/Experiments';
 
 const Container = styled.div `
+    margin-top: 64px;
     margin-left: 64px;
 `
 

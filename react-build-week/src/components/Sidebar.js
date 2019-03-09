@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SidebarContainer = styled.div `
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     height: 100vh;

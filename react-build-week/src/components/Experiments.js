@@ -7,6 +7,18 @@ import styled from 'styled-components';
 
 const ExperimentsContainer = styled.div `
     display: flex;
+    flex-wrap: wrap;
+`
+
+const ExperimentsListing = styled.h1 `
+    margin-top: 90px;
+    margin-left: 15px;
+    font-family: Playfair Display;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 48px;
+    font-size: 36px;
+    color: #000000;
 `
 
 export class Experiments extends React.Component {
@@ -16,7 +28,7 @@ export class Experiments extends React.Component {
   render() {
     return (
         <>
-            <h1>Experiments Listing</h1>
+            <ExperimentsListing>Experiments Listing</ExperimentsListing>
             <ExperimentsContainer>
                 {
                 this.props.experiments.map(experiment => (
