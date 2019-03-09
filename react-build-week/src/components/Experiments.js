@@ -3,17 +3,21 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getExperimentsAsync } from '../actions/actionCreators';
 import Experiment from './Experiment';
+import styled from 'styled-components';
+
+const ExperimentsContainer = styled.div `
+    display: flex;
+`
 
 export class Experiments extends React.Component {
   componentDidMount() {
     this.props.getExperimentsAsync();
   }
-
   render() {
     return (
         <>
-            <h1>Croissant Experiments</h1>
-            <div>
+            <h1>Experiments Listing</h1>
+            <ExperimentsContainer>
                 {
                 this.props.experiments.map(experiment => (
                     <Experiment
@@ -25,7 +29,7 @@ export class Experiments extends React.Component {
                     />
                 ))
                 }
-            </div>
+            </ExperimentsContainer>
         </>
     );
   }
