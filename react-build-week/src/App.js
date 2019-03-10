@@ -4,9 +4,9 @@ import './App.css';
 import styled from 'styled-components';
 
 import WebsiteHome from './components/website/WebsiteHome';
-import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
-import Experiments from './components/Experiments';
+import Sidebar from './components/app/Sidebar';
+import Navbar from './components/app/Navbar';
+import Experiments from './components/app/Experiments';
 
 const Container = styled.div `
     margin-top: 64px;

@@ -58,7 +58,7 @@ const ExperimentType = styled.div `
 
 const ExperimentTools = styled.div `
     display: flex;
-    margin-top: 100px;
+    margin-top: 144px;
     justify-content: flex-end;
 `
 

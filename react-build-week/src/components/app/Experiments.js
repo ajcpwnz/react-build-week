@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getExperimentsAsync } from '../actions/actionCreators';
+import { getExperimentsAsync } from '../../actions/actionCreators';
 import Experiment from './Experiment';
 import styled from 'styled-components';
 
