@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ExperimentCard = styled.div `
+const ExperimentCardContainer = styled.div `
     width: 270px;
     height: 360px;
     border: 1px solid #0014DD;
@@ -74,7 +74,7 @@ const ExperimentTool = styled.div `
 export default class Experiment extends React.Component {
     render() {  
       return (
-        <ExperimentCard>
+        <ExperimentCardContainer>
             <ExperimentTitle>{this.props.title}</ExperimentTitle>
             <ExperimentTags>
                 <ExperimentFunnel>{this.props.funnel}</ExperimentFunnel>
@@ -87,7 +87,7 @@ export default class Experiment extends React.Component {
                     ))
                 }
             </ExperimentTools>
-        </ExperimentCard>
+        </ExperimentCardContainer>
       );
     }
 }

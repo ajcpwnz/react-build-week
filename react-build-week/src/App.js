@@ -18,10 +18,6 @@ export default class App extends Component {
   render() {
     return (
       <>
-      {/* <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/experiments'>Experiments</Link>
-      </nav> */}
       <Route
           exact path='/'
           render={() => (

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getExperimentsAsync } from '../../actions/actionCreators';
-import Experiment from './Experiment';
+import ExperimentCard from './ExperimentCard';
 import styled from 'styled-components';
 
 const ExperimentsContainer = styled.div `
@@ -44,7 +44,7 @@ export class Experiments extends React.Component {
             <ExperimentsContainer>
                 {
                 this.props.experiments.map(experiment => (
-                    <Experiment
+                    <ExperimentCard
                         key={experiment.id}
                         title={experiment.title}
                         funnel={experiment.funnel}
