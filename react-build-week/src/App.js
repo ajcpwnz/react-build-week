@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Link, } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import styled from 'styled-components';
+
+import WebsiteHome from './components/website/WebsiteHome';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Experiments from './components/Experiments';
@@ -22,8 +24,8 @@ export default class App extends Component {
       <Route
           exact path='/'
           render={() => (
-              <h1>Homepage</h1>
-              )}
+              <WebsiteHome />
+          )}
         />
         <Route
           path='/experiments'
