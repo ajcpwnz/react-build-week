@@ -37,20 +37,27 @@ export class Experiments extends React.Component {
   componentDidMount() {
     this.props.getExperimentsAsync();
   }
+
   render() {
+    // function hyphen(str) {
+    //     return str.split(' ').join('-');
+    // }
     return (
         <>
             <ExperimentsListing>Experiments Listing ({this.props.numberOfExperiments})</ExperimentsListing>
             <ExperimentsContainer>
                 {
                 this.props.experiments.map(experiment => (
-                    <ExperimentCard
-                        key={experiment.id}
-                        title={experiment.title}
-                        funnel={experiment.funnel}
-                        type={experiment.type}
-                        tools={experiment.tools}
-                    />
+                    // <Link to={`/${hyphen(experiment.title)}`}>
+                    <Link to={`/${experiment.id}`}>
+                        <ExperimentCard
+                            key={experiment.id}
+                            title={experiment.title}
+                            funnel={experiment.funnel}
+                            type={experiment.type}
+                            tools={experiment.tools}
+                        />
+                    </Link>
                 ))
                 }
                 <Link to="/experiments/add"><AddExperiment>+</AddExperiment></Link>
