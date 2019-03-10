@@ -13,7 +13,7 @@ const ExperimentsContainer = styled.div `
 const ExperimentsListing = styled.h1 `
     margin-top: 90px;
     margin-left: 15px;
-    font-family: Playfair Display;
+    font-family: 'Playfair Display';
     font-style: normal;
     font-weight: bold;
     line-height: 48px;
@@ -28,7 +28,7 @@ export class Experiments extends React.Component {
   render() {
     return (
         <>
-            <ExperimentsListing>Experiments Listing</ExperimentsListing>
+            <ExperimentsListing>Experiments Listing ({this.props.numberOfExperiments})</ExperimentsListing>
             <ExperimentsContainer>
                 {
                 this.props.experiments.map(experiment => (
@@ -48,7 +48,8 @@ export class Experiments extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    experiments: state.experiments
+    experiments: state.experiments,
+    numberOfExperiments: state.experiments.length,
   });
   
   function mapDispatchToProps(dispatch) {
