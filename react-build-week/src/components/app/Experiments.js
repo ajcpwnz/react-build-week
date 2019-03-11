@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getExperimentsAsync } from '../../actions/actionCreators';
-import Experiment from './Experiment';
+import ExperimentCard from './ExperimentCard';
 import styled from 'styled-components';
 
 const ExperimentsContainer = styled.div `
@@ -37,20 +37,27 @@ export class Experiments extends React.Component {
   componentDidMount() {
     this.props.getExperimentsAsync();
   }
+
   render() {
+    // function hyphen(str) {
+    //     return str.split(' ').join('-');
+    // }
     return (
         <>
             <ExperimentsListing>Experiments Listing ({this.props.numberOfExperiments})</ExperimentsListing>
             <ExperimentsContainer>
                 {
                 this.props.experiments.map(experiment => (
-                    <Experiment
-                        key={experiment.id}
-                        title={experiment.title}
-                        funnel={experiment.funnel}
-                        type={experiment.type}
-                        tools={experiment.tools}
-                    />
+                    // <Link to={`/${hyphen(experiment.title)}`}>
+                    <Link to={`/${experiment.id}`}>
+                        <ExperimentCard
+                            key={experiment.id}
+                            title={experiment.title}
+                            funnel={experiment.funnel}
+                            type={experiment.type}
+                            tools={experiment.tools}
+                        />
+                    </Link>
                 ))
                 }
                 <Link to="/experiments/add"><AddExperiment>+</AddExperiment></Link>

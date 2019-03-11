@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import './website.css'
 
 import WebsiteNavbar from './WebsiteNavbar.js';

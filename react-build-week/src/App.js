@@ -8,6 +8,7 @@ import Sidebar from './components/app/Sidebar';
 import Navbar from './components/app/Navbar';
 import Experiments from './components/app/Experiments';
 import ExperimentForm from './components/app/ExperimentForm';
+import Experiment from './components/app/Experiment';
 
 const Container = styled.div `
     margin-top: 64px;
@@ -16,38 +17,49 @@ const Container = styled.div `
 
 export default class App extends Component {
   render() {
+    function hyphen(str) {
+      return str.split(' ').join('-');
+  }
     return (
       <>
-      {/* <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/experiments'>Experiments</Link>
-      </nav> */}
-      <Route
-          exact path='/'
+        <Route
+            exact path='/'
+            render={() => (
+                <WebsiteHome />
+            )}
+        />
+        <Route
+          exact path='/experiments'
           render={() => (
-              <WebsiteHome />
+          <>
+            <Sidebar />
+            <Navbar />
+            <Container>
+              <Experiments />
+            </Container>
+          </>
           )}
-      />
-      <Route
-        exact path='/experiments'
+        />
+        <Route
+          exact path='/experiments/add'
+          render={() => (
+          <>
+            <Sidebar />
+            <Navbar />
+            <Container>
+              <ExperimentForm />
+            </Container>
+          </>
+          )}
+        />
+        <Route
+        path='/:ExperimentId'
         render={() => (
         <>
           <Sidebar />
           <Navbar />
           <Container>
-            <Experiments />
-          </Container>
-        </>
-        )}
-      />
-      <Route
-        exact path='/experiments/add'
-        render={() => (
-        <>
-          <Sidebar />
-          <Navbar />
-          <Container>
-            <ExperimentForm />
+            <Experiment />
           </Container>
         </>
         )}
