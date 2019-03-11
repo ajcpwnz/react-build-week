@@ -11,7 +11,7 @@ class Experiment extends React.Component {
         //   console.log(this.props.match.params);
         return (
             <>
-                <h2>Experiment Page</h2>
+                <h2>Experiment Title</h2>
             </>
         );
     }

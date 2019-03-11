@@ -53,7 +53,7 @@ export default class App extends Component {
           )}
         />
         <Route
-        exact path='/:ExperimentId'
+        path='/:ExperimentId'
         render={() => (
         <>
           <Sidebar />
