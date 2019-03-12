@@ -15,6 +15,8 @@ class Experiment extends React.Component {
         return (
             <>
                 <h2>{this.props.experiments.experiment.title}</h2>
+                <p>{this.props.experiments.experiment.funnel}</p>
+                <p>{this.props.experiments.experiment.type}</p>
             </>
         );
     }

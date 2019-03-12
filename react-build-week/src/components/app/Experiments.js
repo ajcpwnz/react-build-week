@@ -48,7 +48,7 @@ export class Experiments extends React.Component {
             <ExperimentsContainer>
                 {
                 this.props.experiments.allExperiments.map(experiment => (
-                    // <Link to={`/${hyphen(experiment.title)}`}>
+                    // <Link to={`/experiments/${hyphen(experiment.title)}`}>
                     <Link to={`/experiments/${experiment.id}`}>
                         <ExperimentCard
                             key={experiment.id}
@@ -60,7 +60,7 @@ export class Experiments extends React.Component {
                     </Link>
                 ))
                 }
-                <Link to="/experiments/add"><AddExperiment>+</AddExperiment></Link>
+                <Link to="/form/add"><AddExperiment>+</AddExperiment></Link>
             </ExperimentsContainer>
         </>
     );

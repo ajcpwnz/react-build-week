@@ -41,7 +41,7 @@ export default class App extends Component {
           )}
         />
         <Route
-          exact path='/experiments/add'
+          exact path='/form/add'
           render={() => (
           <>
             <Sidebar />
