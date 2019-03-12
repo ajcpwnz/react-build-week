@@ -54,12 +54,12 @@ export default class App extends Component {
         />
         <Route
         path='/:ExperimentId'
-        render={() => (
+        render={(props) => (
         <>
           <Sidebar />
           <Navbar />
           <Container>
-            <Experiment />
+            <Experiment {...props} />
           </Container>
         </>
         )}
