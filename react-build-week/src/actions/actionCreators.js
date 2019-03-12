@@ -5,14 +5,22 @@ export const getExperimentsAsync = () => dispatch => {
     axios
         .get('https://demo7071140.mockable.io/experiments')
         .then(res => {
-        dispatch({ type: types.FETCH_EXPERIMENTS, payload: res.data });
+            dispatch({ type: types.FETCH_EXPERIMENTS, payload: res.data })
     });
 };
 
-export const addExperimentAsync = experiment => dispatch => {
+export const getExperiment = id => dispatch => {
     axios
-    .post('https://demo7071140.mockable.io/experiments', experiment)
-      .then(res => {
-        dispatch({ type: types.ADD_EXPERIMENT, payload: res.data });
-      });
-  };
+        .get(`https://demo7071140.mockable.io/experiments/${id}`)
+        .then(res => {
+            dispatch({ type: types.FETCH_EXPERIMENT, payload: res.data })
+    });
+};
+
+export const addExperiment = experiment => dispatch => {
+    axios
+        .post('https://demo7071140.mockable.io/experiments', experiment)
+        .then(res => {
+            dispatch({ type: types.ADD_EXPERIMENT, payload: res.data })
+    });
+};

@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getExperimentsAsync } from '../../actions/actionCreators';
+import { getExperiment } from '../../actions/actionCreators';
 
 class Experiment extends React.Component {
     componentDidMount() {
-        this.props.getExperimentsAsync();
-      }
+        const id = this.props.match.params.id;
+        this.props.getExperiment(id);
+    }
+
       render() {
-        //   console.log(this.props.match.params);
+        if(!this.props.experiments.experiment.title)
+            return null;
         return (
             <>
-                <h2>Experiment Title</h2>
+                <h2>{this.props.experiments.experiment.title}</h2>
             </>
         );
     }
@@ -23,8 +26,8 @@ const mapStateToProps = state => ({
   
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-      getExperimentsAsync
+      getExperiment
     }, dispatch);
   }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Experiment);
+export default connect(mapStateToProps, mapDispatchToProps)(Experiment);

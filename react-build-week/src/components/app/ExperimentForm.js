@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { addExperimentAsync } from '../../actions/actionCreators';
+import { addExperiment } from '../../actions/actionCreators';
 import styled from 'styled-components';
 
 const AddExperimentForm = styled.div `
@@ -49,7 +49,7 @@ export class ExperimentForm extends React.Component {
       funnel: funnelInput.value,
     };
 
-    this.props.addExperimentAsync(newExperiment);
+    this.props.addExperiment(newExperiment);
     titleInput.value = '';
     funnelInput.value = '';
   }
@@ -83,7 +83,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    addExperimentAsync,
+    addExperiment,
   }, dispatch);
 }
 

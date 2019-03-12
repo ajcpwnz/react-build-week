@@ -47,9 +47,9 @@ export class Experiments extends React.Component {
             <ExperimentsListing>Experiments Listing ({this.props.numberOfExperiments})</ExperimentsListing>
             <ExperimentsContainer>
                 {
-                this.props.experiments.map(experiment => (
+                this.props.experiments.allExperiments.map(experiment => (
                     // <Link to={`/${hyphen(experiment.title)}`}>
-                    <Link to={`/${experiment.id}`}>
+                    <Link to={`/experiments/${experiment.id}`}>
                         <ExperimentCard
                             key={experiment.id}
                             title={experiment.title}
@@ -69,7 +69,7 @@ export class Experiments extends React.Component {
 
 const mapStateToProps = state => ({
     experiments: state.experiments,
-    numberOfExperiments: state.experiments.length,
+    numberOfExperiments: state.experiments.allExperiments.length,
   });
   
   function mapDispatchToProps(dispatch) {
