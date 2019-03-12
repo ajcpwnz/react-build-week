@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { searchExperiments } from '../../actions/actionCreators';
+import { getExperimentsAsync, searchExperiments } from '../../actions/actionCreators';
 import styled from 'styled-components';
 import settings from './img/settings.png';
 
@@ -19,7 +19,7 @@ const NavbarContainer = styled.div `
 
 const NavbarSearch = styled.input `
     margin-top: 20px;
-    margin-left: 15px;
+    margin-left: 38px;
     height: 30px;
     width: 300px;
     border: none;
@@ -55,7 +55,6 @@ class Navbar extends React.Component {
             if (search.keyCode === 13) {
                 this.props.searchExperiments(this.state.searchInput);
             }
-            
         }
       return (
         <NavbarContainer>
@@ -80,6 +79,7 @@ const mapStateToProps = state => ({
   
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        getExperimentsAsync,
         searchExperiments
     }, dispatch);
   }
