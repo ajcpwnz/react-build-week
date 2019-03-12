@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getExperimentsAsync, searchExperiments } from '../../actions/actionCreators';
 import styled from 'styled-components';
 import settings from './img/settings.png';
 
@@ -16,7 +19,7 @@ const NavbarContainer = styled.div `
 
 const NavbarSearch = styled.input `
     margin-top: 20px;
-    margin-left: 15px;
+    margin-left: 38px;
     height: 30px;
     width: 300px;
     border: none;
@@ -39,11 +42,28 @@ const NavbarProfile = styled.div `
     margin-top: 10px;
 `
 
-export default class Navbar extends React.Component {
-    render() {  
+
+class Navbar extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            searchInput: "",
+        }
+    }
+    render() {
+        const onSearch = search => {
+            if (search.keyCode === 13) {
+                this.props.searchExperiments(this.state.searchInput);
+            }
+        }
       return (
         <NavbarContainer>
-            <NavbarSearch placeholder="🔍 Search growth experiments and tools"></NavbarSearch>
+            <NavbarSearch
+                placeholder="🔍 Search growth experiments and tools"
+                onChange={event => this.setState({searchInput: event.target.value})}
+                onKeyDown={onSearch}
+            >
+            </NavbarSearch>
             <NavbarSettings>
                 <img src={settings} alt="Settings"/>
             </NavbarSettings>
@@ -52,3 +72,16 @@ export default class Navbar extends React.Component {
       );
     }
 }
+
+const mapStateToProps = state => ({
+    experiments: state.experiments,
+  });
+  
+  function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getExperimentsAsync,
+        searchExperiments
+    }, dispatch);
+  }
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

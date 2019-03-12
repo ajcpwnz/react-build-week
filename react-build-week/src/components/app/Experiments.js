@@ -9,11 +9,15 @@ import styled from 'styled-components';
 const ExperimentsContainer = styled.div `
     display: flex;
     flex-wrap: wrap;
+    margin-left: 26px;
+    & :any-link {
+        text-decoration: none;
+    }
 `
 
 const ExperimentsListing = styled.h1 `
-    margin-top: 90px;
-    margin-left: 15px;
+    margin-top: 160px;
+    margin-left: 40px;
     font-family: 'Playfair Display';
     font-style: normal;
     font-weight: bold;
@@ -48,7 +52,7 @@ export class Experiments extends React.Component {
             <ExperimentsContainer>
                 {
                 this.props.experiments.allExperiments.map(experiment => (
-                    // <Link to={`/${hyphen(experiment.title)}`}>
+                    // <Link to={`/experiments/${hyphen(experiment.title)}`}>
                     <Link to={`/experiments/${experiment.id}`}>
                         <ExperimentCard
                             key={experiment.id}
@@ -60,7 +64,7 @@ export class Experiments extends React.Component {
                     </Link>
                 ))
                 }
-                <Link to="/experiments/add"><AddExperiment>+</AddExperiment></Link>
+                <Link to="/form/add"><AddExperiment>+</AddExperiment></Link>
             </ExperimentsContainer>
         </>
     );

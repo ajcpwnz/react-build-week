@@ -24,7 +24,7 @@ const SidebarLogo = styled.div `
 
 const SidebarListing = styled.div `
     position: fixed;
-    top: 102px;
+    top: 86px;
     left: 24px;
 `
 

@@ -9,6 +9,8 @@ import Navbar from './components/app/Navbar';
 import Experiments from './components/app/Experiments';
 import ExperimentForm from './components/app/ExperimentForm';
 import Experiment from './components/app/Experiment';
+import Filter from './components/app/Filter';
+import Tags from './components/app/Tags';
 
 const Container = styled.div `
     margin-top: 64px;
@@ -34,6 +36,8 @@ export default class App extends Component {
           <>
             <Sidebar />
             <Navbar />
+            <Filter />
+            < Tags />
             <Container>
               <Experiments />
             </Container>
@@ -41,7 +45,7 @@ export default class App extends Component {
           )}
         />
         <Route
-          exact path='/experiments/add'
+          exact path='/form/add'
           render={() => (
           <>
             <Sidebar />
