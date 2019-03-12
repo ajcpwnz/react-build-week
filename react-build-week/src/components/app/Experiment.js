@@ -5,14 +5,16 @@ import { getExperiment } from '../../actions/actionCreators';
 
 class Experiment extends React.Component {
     componentDidMount() {
-        const id = this.props.match.params.ExperimentId;
+        const id = this.props.match.params.id;
         this.props.getExperiment(id);
     }
 
       render() {
+        if(!this.props.experiments.experiment.title)
+            return null;
         return (
             <>
-                <h2>{this.props.experiments.title}</h2>
+                <h2>{this.props.experiments.experiment.title}</h2>
             </>
         );
     }
