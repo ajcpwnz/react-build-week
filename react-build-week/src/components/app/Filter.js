@@ -8,11 +8,7 @@ import styled from 'styled-components';
 const FilterContainer = styled.div `
     z-index: 1;
     display: flex;
-    position: relative;
-    top: 64px;
-    left: 64px;
     height: 64px;
-    width: 100vw;
     border-bottom: 0.5px solid rgba(151, 151, 151, 0.38);
 `
 const FilterLeft = styled.div `
@@ -61,6 +57,9 @@ export class Filter extends React.Component {
         super();    
         this.state = {
           isOpen: false,
+          activeFilters: {
+
+          }
         };
     }
 
@@ -71,8 +70,11 @@ export class Filter extends React.Component {
     }
 
     onToolsFilter = tools => {
-        this.props.filterTools(tools.target.value);
+        const key = tools.target.value;
+        this.setState({ activeFilters: {...this.state.activeFilters, [key]: !this.state.activeFilters[key] }},
+            () => {this.props.filterTools(this.state.activeFilters)});
     };
+
 
     render() {
         return (
@@ -99,9 +101,14 @@ export class Filter extends React.Component {
     }
 }
 
+const getFilteredExperimentsSelector = (state) => {
+    const { allExperiments, activeFilter } =  state.experiments
+    return Object.values(activeFilter).some(i => i) ?  allExperiments.filter((experiment) => experiment.tools.some( i => activeFilter[i])) : allExperiments
+}
+
 function mapStateToProps(state) {
     return {
-      experiments: state.experiments,
+        experiments: getFilteredExperimentsSelector(state),
     };
   }
 

@@ -16,7 +16,8 @@ const ExperimentsContainer = styled.div `
 `
 
 const ExperimentsListing = styled.h1 `
-    margin-top: 160px;
+    margin-top: 23px;
+    margin-bottom: 10px;
     margin-left: 40px;
     font-family: 'Playfair Display';
     font-style: normal;
@@ -51,7 +52,7 @@ export class Experiments extends React.Component {
             <ExperimentsListing>Experiments Listing ({this.props.numberOfExperiments})</ExperimentsListing>
             <ExperimentsContainer>
                 {
-                this.props.experiments.allExperiments.map(experiment => (
+                this.props.experiments.map(experiment => (
                     // <Link to={`/experiments/${hyphen(experiment.title)}`}>
                     <>
                             <ExperimentCard
@@ -72,8 +73,13 @@ export class Experiments extends React.Component {
   }
 }
 
+const getFilteredExperimentsSelector = (state) => {
+    const { allExperiments, activeFilter } =  state.experiments
+    return Object.values(activeFilter).some(i => i) ?  allExperiments.filter((experiment) => experiment.tools.some( i => activeFilter[i])) : allExperiments
+}
+
 const mapStateToProps = state => ({
-    experiments: state.experiments,
+    experiments: getFilteredExperimentsSelector(state),
     numberOfExperiments: state.experiments.allExperiments.length,
   });
   

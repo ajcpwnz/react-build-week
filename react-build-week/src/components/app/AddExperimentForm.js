@@ -1,9 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { addExperiment } from '../../actions/actionCreators';
 import styled from 'styled-components';
-import { callbackify } from 'util';
 
 const AddExperimentFormStyle = styled.div `
     margin: 120px auto;
@@ -49,19 +49,9 @@ export class AddExperimentForm extends React.Component {
   funnelRef = React.createRef()
   categoryRef = React.createRef()
 
-  // function greeting(name) {
-  //   alert('Hello ' + name);
-  // }
-  
-  // function processUserInput(callback) {
-  //   var name = prompt('Please enter your name.');
-  //   callback(name);
-  // }
-  
-  // processUserInput(greeting);
-
   redirectToExperiments = () => {
-    window.location.href = "/experiments";
+    debugger
+    this.props.history.push('/experiments')
   }
 
   onAddExperiment = () => {
@@ -76,12 +66,10 @@ export class AddExperimentForm extends React.Component {
       tools: ["Facebook Ads", "Google Analytics"]
     };
 
-    this.props.addExperiment(newExperiment);
+    this.props.addExperiment(newExperiment).then(this.redirectToExperiments);
     titleInput.value = '';
     funnelInput.value = '';
     categoryInput.value = '';
-
-    // this.redirectToExperiments();
   }
 
   render() {
@@ -122,4 +110,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddExperimentForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddExperimentForm));

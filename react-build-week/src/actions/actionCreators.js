@@ -39,7 +39,7 @@ export const getExperiment = id => dispatch => {
 // ADD EXPERIMENT - TODO
 
 export const addExperiment = (experiment) => dispatch => {
-    axios
+    return axios
         .post(experiments_url_test, experiment)
         .then(res => {
             dispatch({ type: types.ADD_EXPERIMENT, payload: res.data })
@@ -52,6 +52,6 @@ export const deleteExperiment = id => dispatch => {
     axios
         .delete(experiments_url_test + id)
         .then(res => {
-            dispatch({ type: types.DELETE_EXPERIMENT, payload: res.data })
+            dispatch({ type: types.DELETE_EXPERIMENT, payload: id })
     });
 };
