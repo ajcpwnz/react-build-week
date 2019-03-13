@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { deleteExperiment } from '../../actions/actionCreators';
 import styled from 'styled-components';
 
 const ExperimentCardContainer = styled.div `
@@ -38,27 +42,9 @@ const ExperimentFunnel = styled.div `
     border-radius: 20px;
 `
 
-const ExperimentType = styled.div `
-    margin-left: 10px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 900;
-    line-height: 9px;
-    font-size: 10px;
-    letter-spacing: 0.888889px;
-    text-transform: uppercase;
-    color: #0014DD;
-
-    height: 24px;
-    padding: 12px 7px 0px 7px;
-    border: 1px solid #0014DD;
-    border-radius: 20px;
-`
-
 const ExperimentTools = styled.div `
     display: flex;
-    margin-top: 144px;
+    margin-top: 130px;
     justify-content: flex-end;
 `
 
@@ -71,14 +57,21 @@ const ExperimentTool = styled.div `
     border-radius: 100%;
 `
 
-export default class Experiment extends React.Component {
-    render() {  
+class ExperimentCard extends React.Component {
+    onDelete = () => {
+        const ExperimentCardId = this.props.id;
+        this.props.deleteExperiment(ExperimentCardId);
+    };
+
+    render() {
       return (
         <ExperimentCardContainer>
-            <ExperimentTitle>{this.props.title}</ExperimentTitle>
+            <div onClick={this.onDelete}>X</div>
+            <Link to={`/experiments/${this.props.id}`}>
+                <ExperimentTitle>{this.props.title}</ExperimentTitle>
+            </Link>
             <ExperimentTags>
                 <ExperimentFunnel>{this.props.funnel}</ExperimentFunnel>
-                <ExperimentType>{this.props.type}</ExperimentType>
             </ExperimentTags>
             <ExperimentTools>
                 {
@@ -91,3 +84,15 @@ export default class Experiment extends React.Component {
       );
     }
 }
+
+const mapStateToProps = state => ({
+    experiments: state.experiments,
+  });
+  
+  function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+      deleteExperiment
+    }, dispatch);
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(ExperimentCard);

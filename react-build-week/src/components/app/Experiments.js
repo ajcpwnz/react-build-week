@@ -53,15 +53,16 @@ export class Experiments extends React.Component {
                 {
                 this.props.experiments.allExperiments.map(experiment => (
                     // <Link to={`/experiments/${hyphen(experiment.title)}`}>
-                    <Link to={`/experiments/${experiment.id}`}>
-                        <ExperimentCard
-                            key={experiment.id}
-                            title={experiment.title}
-                            funnel={experiment.funnel}
-                            type={experiment.type}
-                            tools={experiment.tools}
-                        />
-                    </Link>
+                    <>
+                            <ExperimentCard
+                                key={experiment.id}
+                                id={experiment.id}
+                                title={experiment.title}
+                                funnel={experiment.funnel}
+                                type={experiment.type}
+                                tools={experiment.tools}
+                            />
+                    </>
                 ))
                 }
                 <Link to="/form/add"><AddExperiment>+</AddExperiment></Link>

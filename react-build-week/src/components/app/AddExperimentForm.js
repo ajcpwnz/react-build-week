@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addExperiment } from '../../actions/actionCreators';
 import styled from 'styled-components';
+import { callbackify } from 'util';
 
 const AddExperimentFormStyle = styled.div `
     margin: 120px auto;
@@ -48,6 +49,21 @@ export class AddExperimentForm extends React.Component {
   funnelRef = React.createRef()
   categoryRef = React.createRef()
 
+  // function greeting(name) {
+  //   alert('Hello ' + name);
+  // }
+  
+  // function processUserInput(callback) {
+  //   var name = prompt('Please enter your name.');
+  //   callback(name);
+  // }
+  
+  // processUserInput(greeting);
+
+  redirectToExperiments = () => {
+    window.location.href = "/experiments";
+  }
+
   onAddExperiment = () => {
     const titleInput = this.titleRef.current;
     const funnelInput = this.funnelRef.current;
@@ -64,6 +80,8 @@ export class AddExperimentForm extends React.Component {
     titleInput.value = '';
     funnelInput.value = '';
     categoryInput.value = '';
+
+    // this.redirectToExperiments();
   }
 
   render() {

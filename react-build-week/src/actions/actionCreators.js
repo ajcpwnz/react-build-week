@@ -8,7 +8,7 @@ const experiments_url_test = 'https://stark-springs-25470.herokuapp.com/experime
 
 export const getExperimentsAsync = () => dispatch => {
     axios
-        .get(experiments_url)
+        .get(experiments_url_test)
         .then(res => {
             dispatch({ type: types.FETCH_EXPERIMENTS, payload: res.data })
     });
@@ -50,7 +50,7 @@ export const addExperiment = (experiment) => dispatch => {
 
 export const deleteExperiment = id => dispatch => {
     axios
-        .post(experiments_url_test + id)
+        .delete(experiments_url_test + id)
         .then(res => {
             dispatch({ type: types.DELETE_EXPERIMENT, payload: res.data })
     });
