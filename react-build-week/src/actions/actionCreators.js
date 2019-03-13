@@ -36,7 +36,7 @@ export const getExperiment = id => dispatch => {
     });
 };
 
-// ADD EXPERIMENT - TODO
+// ADD EXPERIMENT
 
 export const addExperiment = (experiment) => dispatch => {
     return axios
@@ -46,7 +46,7 @@ export const addExperiment = (experiment) => dispatch => {
     });
 };
 
-// DELETE EXPERIMENT - TODO
+// DELETE EXPERIMENT
 
 export const deleteExperiment = id => dispatch => {
     axios

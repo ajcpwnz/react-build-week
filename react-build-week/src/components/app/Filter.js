@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 
 const FilterContainer = styled.div `
-    z-index: 1;
     display: flex;
     height: 64px;
     border-bottom: 0.5px solid rgba(151, 151, 151, 0.38);
@@ -41,6 +40,12 @@ const CategoryFilter = styled.div `
     width: 200px;
 `
 
+const CategoryDropdown = styled.ul `
+    &.hide {
+        display: none;
+  }
+`
+
 const ToolsFilter = styled.div `
     list-style-type: none;
     width: 200px;
@@ -56,16 +61,23 @@ export class Filter extends React.Component {
     constructor() {
         super();    
         this.state = {
-          isOpen: false,
+          toolsIsOpen: false,
+          categoryIsOpen: false,
           activeFilters: {
 
           }
         };
     }
 
+    onCategoryToggle = () => {
+        this.setState(prevState => ({
+            categoryIsOpen: !prevState.categoryIsOpen
+          }));
+    }
+
     onToolsToggle = () => {
         this.setState(prevState => ({
-            isOpen: !prevState.isOpen
+            toolsIsOpen: !prevState.toolsIsOpen
           }));
     }
 
@@ -81,14 +93,21 @@ export class Filter extends React.Component {
             <FilterContainer>
                 <FilterLeft>
                     <FunnelFilter>Funnel</FunnelFilter>
-                    <CategoryFilter>Category</CategoryFilter>
+                    <CategoryFilter >
+                        <label onClick={this.onCategoryToggle}>Category</label>
+                        <CategoryDropdown className={`${this.state.categoryIsOpen ? '' : 'hide'}`}>
+                            <li><input onClick={this.onToolsFilter} value='Facebook Ads' type="checkbox"/>Facebook Ads</li>
+                            <li><input onClick={this.onToolsFilter} value='Full Story' type="checkbox"/>Full Story</li>
+                            <li><input onClick={this.onToolsFilter} value='Google Analytics' type="checkbox"/>Google Analytics</li>
+                        </CategoryDropdown>
+                    </CategoryFilter>
                     <div>
                         <ToolsFilter>
                             <label onClick={this.onToolsToggle}>Tools</label>
-                            <ToolsDropdown className={`${this.state.isOpen ? '' : 'hide'}`}>
+                            <ToolsDropdown className={`${this.state.toolsIsOpen ? '' : 'hide'}`}>
                                 <li><input onClick={this.onToolsFilter} value='Facebook Ads' type="checkbox"/>Facebook Ads</li>
-                                <li><input type="checkbox"/>Full Story</li>
-                                <li><input type="checkbox"/>Google Analytics</li>
+                                <li><input onClick={this.onToolsFilter} value='Full Story' type="checkbox"/>Full Story</li>
+                                <li><input onClick={this.onToolsFilter} value='Google Analytics' type="checkbox"/>Google Analytics</li>
                             </ToolsDropdown>
                         </ToolsFilter>
                     </div>
