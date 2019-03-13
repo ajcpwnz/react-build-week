@@ -7,7 +7,7 @@ import WebsiteHome from './components/website/WebsiteHome';
 import Sidebar from './components/app/Sidebar';
 import Navbar from './components/app/Navbar';
 import Experiments from './components/app/Experiments';
-import ExperimentForm from './components/app/ExperimentForm';
+import AddExperimentForm from './components/app/AddExperimentForm';
 import Experiment from './components/app/Experiment';
 import Filter from './components/app/Filter';
 import Tags from './components/app/Tags';
@@ -51,7 +51,7 @@ export default class App extends Component {
             <Sidebar />
             <Navbar />
             <Container>
-              <ExperimentForm />
+              <AddExperimentForm />
             </Container>
           </>
           )}

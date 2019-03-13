@@ -8,6 +8,8 @@ export function experiments(experimentsArray = initialState, action) {
         return {...experimentsArray, allExperiments: action.payload}
       case types.SEARCH_EXPERIMENTS:
         return {...experimentsArray, allExperiments: experimentsArray.allExperiments.filter((experiment) => experiment.title.includes(action.payload))};
+      case types.FILTER_TOOLS:
+        return {...experimentsArray, allExperiments: experimentsArray.allExperiments.filter((experiment) => experiment.tools.includes(action.payload))};
       case types.FETCH_EXPERIMENT:
         return {...experimentsArray, experiment: action.payload}
       case types.ADD_EXPERIMENT:
