@@ -1,10 +1,11 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { addExperiment } from '../../actions/actionCreators';
 import styled from 'styled-components';
 
-const AddExperimentForm = styled.div `
+const AddExperimentFormStyle = styled.div `
     margin: 120px auto;
     height: 300px;
     width: 260px;
@@ -25,6 +26,13 @@ const AddFormFunnel = styled.select `
     width: 200px;
 `
 
+const AddFormCategory = styled.select `
+    margin-top: 10px;
+    margin-left: 20px;
+    height: 20px;
+    width: 200px;
+`
+
 const AddFormButton = styled.button `
     margin-top: 15px;
     margin-left: 48px;
@@ -36,27 +44,36 @@ const AddFormButton = styled.button `
     border-radius: 100px;
 `
 
-export class ExperimentForm extends React.Component {
+export class AddExperimentForm extends React.Component {
   titleRef = React.createRef()
   funnelRef = React.createRef()
+  categoryRef = React.createRef()
+
+  redirectToExperiments = () => {
+    this.props.history.push('/experiments')
+  }
 
   onAddExperiment = () => {
     const titleInput = this.titleRef.current;
     const funnelInput = this.funnelRef.current;
+    const categoryInput = this.categoryRef.current;
 
     const newExperiment = {
       title: titleInput.value,
       funnel: funnelInput.value,
+      category: [categoryInput.value],
+      tools: ["Facebook Ads", "Google Analytics"]
     };
 
-    this.props.addExperiment(newExperiment);
+    this.props.addExperiment(newExperiment).then(this.redirectToExperiments);
     titleInput.value = '';
     funnelInput.value = '';
+    categoryInput.value = '';
   }
 
   render() {
     return (
-      <AddExperimentForm>
+      <AddExperimentFormStyle>
         <div>
           <AddFormTitle placeholder="Growth Experiment Title" ref={this.titleRef} type="text" />
           <AddFormFunnel placeholder="" ref={this.funnelRef} type="text">
@@ -66,11 +83,16 @@ export class ExperimentForm extends React.Component {
             <option value="virality">Virality</option>
             <option value="other">Other</option>
         </ AddFormFunnel>
+        <AddFormCategory placeholder="" ref={this.categoryRef} type="text">
+            <option value="saas">SaaS</option>
+            <option value="marketplace">Marketplace</option>
+            <option value="ecommerce">Ecommerce</option>
+        </ AddFormCategory>
         </div>
         <div>
           <AddFormButton onClick={this.onAddExperiment}>Add Experiment</AddFormButton>
         </div>
-      </AddExperimentForm>
+      </AddExperimentFormStyle>
     );
   }
 }
@@ -87,4 +109,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExperimentForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddExperimentForm));

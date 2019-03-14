@@ -16,7 +16,8 @@ const ExperimentsContainer = styled.div `
 `
 
 const ExperimentsListing = styled.h1 `
-    margin-top: 160px;
+    margin-top: 23px;
+    margin-bottom: 10px;
     margin-left: 40px;
     font-family: 'Playfair Display';
     font-style: normal;
@@ -38,9 +39,9 @@ const AddExperiment = styled.div `
 `
 
 export class Experiments extends React.Component {
-  componentDidMount() {
-    this.props.getExperimentsAsync();
-  }
+    componentDidMount() {
+        if(!this.props.experiments.length) this.props.getExperimentsAsync();
+    }
 
   render() {
     // function hyphen(str) {
@@ -51,17 +52,18 @@ export class Experiments extends React.Component {
             <ExperimentsListing>Experiments Listing ({this.props.numberOfExperiments})</ExperimentsListing>
             <ExperimentsContainer>
                 {
-                this.props.experiments.allExperiments.map(experiment => (
+                this.props.experiments.map(experiment => (
                     // <Link to={`/experiments/${hyphen(experiment.title)}`}>
-                    <Link to={`/experiments/${experiment.id}`}>
-                        <ExperimentCard
-                            key={experiment.id}
-                            title={experiment.title}
-                            funnel={experiment.funnel}
-                            type={experiment.type}
-                            tools={experiment.tools}
-                        />
-                    </Link>
+                    <>
+                            <ExperimentCard
+                                key={experiment.id}
+                                id={experiment.id}
+                                title={experiment.title}
+                                funnel={experiment.funnel}
+                                type={experiment.type}
+                                tools={experiment.tools}
+                            />
+                    </>
                 ))
                 }
                 <Link to="/form/add"><AddExperiment>+</AddExperiment></Link>
@@ -71,8 +73,19 @@ export class Experiments extends React.Component {
   }
 }
 
+const getExperimentsBySearchTitle = (state) => {
+    const { allExperiments, searchFilter } =  state.experiments
+    const convertedFilter = searchFilter && searchFilter.toLowerCase()
+    return !!convertedFilter ? allExperiments.filter((experiment) => experiment.title.toLowerCase().includes(convertedFilter)) : allExperiments;
+}
+
+const getFilteredExperimentsSelector = (experimentsArray, state) => {
+    const { activeFilter } =  state.experiments
+    return Object.values(activeFilter).some(i => i) ?  experimentsArray.filter((experiment) => experiment.tools.some( i => activeFilter[i])) : experimentsArray;
+}
+
 const mapStateToProps = state => ({
-    experiments: state.experiments,
+    experiments: getFilteredExperimentsSelector(getExperimentsBySearchTitle(state), state),
     numberOfExperiments: state.experiments.allExperiments.length,
   });
   

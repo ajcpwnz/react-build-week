@@ -3,11 +3,8 @@ import styled from 'styled-components';
 
 const TagsContainer = styled.div `
     display: flex;
-    position: absolute;
     top: 130px;
-    left: 64px;
     height: 64px;
-    width: 100vw;
     border-bottom: 0.5px solid rgba(151, 151, 151, 0.38);
 `
 
