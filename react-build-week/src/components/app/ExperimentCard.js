@@ -28,12 +28,13 @@ const ExperimentTitleBox = styled.div `
     height: 190px;
     padding-top: 10px;
     background: #FFFFFF;
-    border: blue solid 1px;
+    border-bottom: 10px solid #D7DEFC;
 `
 
 const ExperimentTitle = styled.h2 `
     font-family: 'Poppins';
     font-style: normal;
+    margin-left: 10px;
     font-weight: 600;
     line-height: 36px;
     font-size: 26px;
@@ -41,28 +42,24 @@ const ExperimentTitle = styled.h2 `
 `
 const ExperimentTags = styled.div `
     display: flex;
-    margin-left: 15px;
+    margin-left: 18px;
 `
 
 const ExperimentFunnel = styled.div `
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 900;
-    line-height: 9px;
     font-size: 10px;
-    letter-spacing: 0.888889px;
+    line-height: 12px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: #0014DD;
-
-    height: 24px;
-    padding: 12px 7px 0px 7px;
-    border: 1px solid #0014DD;
-    border-radius: 20px;
+    margin-top: 30px;
 `
 
 const ExperimentTools = styled.div `
     display: flex;
-    margin-top: 130px;
+    margin-top: 64px;
     justify-content: flex-end;
 `
 

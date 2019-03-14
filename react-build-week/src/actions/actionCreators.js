@@ -52,16 +52,13 @@ export const editExperiment = (id, experiment) => dispatch => {
     return axios
         .put(experiments_url_test + id, experiment)
         .then(res => {
-            dispatch({ type: types.EDIT_EXPERIMENT, payload: res.data })
+            dispatch({ type: types.EDIT_EXPERIMENT, payload: {...res.data, id }})
     });
 };
 
 // DELETE EXPERIMENT
 
 export const deleteExperiment = id => dispatch => {
-    axios
-        .delete(experiments_url_test + id)
-        .then(res => {
-            dispatch({ type: types.DELETE_EXPERIMENT, payload: id })
-    });
+    dispatch({ type: types.DELETE_EXPERIMENT, payload: Number(id) })
+    return axios.delete(experiments_url_test + id)
 };

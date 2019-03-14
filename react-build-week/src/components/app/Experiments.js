@@ -39,9 +39,9 @@ const AddExperiment = styled.div `
 `
 
 export class Experiments extends React.Component {
-  componentDidMount() {
-    this.props.getExperimentsAsync();
-  }
+    componentDidMount() {
+        if(!this.props.experiments.length) this.props.getExperimentsAsync();
+    }
 
   render() {
     // function hyphen(str) {
@@ -73,13 +73,19 @@ export class Experiments extends React.Component {
   }
 }
 
-const getFilteredExperimentsSelector = (state) => {
-    const { allExperiments, activeFilter } =  state.experiments
-    return Object.values(activeFilter).some(i => i) ?  allExperiments.filter((experiment) => experiment.tools.some( i => activeFilter[i])) : allExperiments
+const getExperimentsBySearchTitle = (state) => {
+    const { allExperiments, searchFilter } =  state.experiments
+    const convertedFilter = searchFilter && searchFilter.toLowerCase()
+    return !!convertedFilter ? allExperiments.filter((experiment) => experiment.title.toLowerCase().includes(convertedFilter)) : allExperiments;
+}
+
+const getFilteredExperimentsSelector = (experimentsArray, state) => {
+    const { activeFilter } =  state.experiments
+    return Object.values(activeFilter).some(i => i) ?  experimentsArray.filter((experiment) => experiment.tools.some( i => activeFilter[i])) : experimentsArray;
 }
 
 const mapStateToProps = state => ({
-    experiments: getFilteredExperimentsSelector(state),
+    experiments: getFilteredExperimentsSelector(getExperimentsBySearchTitle(state), state),
     numberOfExperiments: state.experiments.allExperiments.length,
   });
   

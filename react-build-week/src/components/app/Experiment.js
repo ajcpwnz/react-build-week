@@ -30,7 +30,8 @@ class Experiment extends React.Component {
 
     onDelete = () => {
         const ExperimentCardId = this.props.match.params.id;
-        this.props.deleteExperiment(ExperimentCardId).then(this.redirectToExperiments);
+        this.props.deleteExperiment(ExperimentCardId)
+        this.redirectToExperiments();
     };
 
       render() {
