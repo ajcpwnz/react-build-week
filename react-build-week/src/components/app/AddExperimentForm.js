@@ -50,7 +50,6 @@ export class AddExperimentForm extends React.Component {
   categoryRef = React.createRef()
 
   redirectToExperiments = () => {
-    debugger
     this.props.history.push('/experiments')
   }
 

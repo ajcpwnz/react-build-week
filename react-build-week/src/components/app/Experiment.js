@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getExperiment } from '../../actions/actionCreators';
 import styled from 'styled-components';
@@ -25,13 +26,17 @@ class Experiment extends React.Component {
     }
 
       render() {
+        const edit_url = "/experiments/" + this.props.match.params.id + "/edit";
         if(!this.props.experiments.experiment.title)
             return null;
         return (
+            
             <ExperimentContainer>
                 <ExperimentTitle>{this.props.experiments.experiment.title}</ExperimentTitle>
                 <p>{this.props.experiments.experiment.funnel}</p>
                 <p>{this.props.experiments.experiment.type}</p>
+                <br></br>
+                <Link to={edit_url}>Edit</Link>
             </ExperimentContainer>
         );
     }

@@ -8,6 +8,7 @@ import AddExperimentForm from './components/app/AddExperimentForm';
 import Experiment from './components/app/Experiment';
 import Filter from './components/app/Filter';
 import Tags from './components/app/Tags';
+import EditExperimentForm from './components/app/EditExperimentForm';
 
 export default class App extends Component {
   render() {
@@ -43,6 +44,14 @@ export default class App extends Component {
           render={(props) => (
           <AppLayout>
               <Experiment {...props} />
+          </AppLayout>
+          )}
+        />
+        <Route
+          exact path='/experiments/:id/edit'
+          render={() => (
+          <AppLayout>
+              <EditExperimentForm />
           </AppLayout>
           )}
         />

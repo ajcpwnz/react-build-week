@@ -38,11 +38,21 @@ export const getExperiment = id => dispatch => {
 
 // ADD EXPERIMENT
 
-export const addExperiment = (experiment) => dispatch => {
+export const addExperiment = experiment => dispatch => {
     return axios
         .post(experiments_url_test, experiment)
         .then(res => {
             dispatch({ type: types.ADD_EXPERIMENT, payload: res.data })
+    });
+};
+
+// EDIT EXPERIMENT
+
+export const editExperiment = (id, experiment) => dispatch => {
+    return axios
+        .put(experiments_url_test + id, experiment)
+        .then(res => {
+            dispatch({ type: types.EDIT_EXPERIMENT, payload: res.data })
     });
 };
 
