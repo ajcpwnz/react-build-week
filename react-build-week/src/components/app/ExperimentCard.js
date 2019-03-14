@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { deleteExperiment } from '../../actions/actionCreators';
 import styled from 'styled-components';
@@ -8,8 +8,27 @@ import styled from 'styled-components';
 const ExperimentCardContainer = styled.div `
     width: 270px;
     height: 360px;
-    border: 1px solid #0014DD;
     margin: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+`
+
+const ExperimentCardBox = styled.div `
+    background: #ECEFFD;
+    width: 250px;
+    height: 340px;
+    margin: 10px;
+`
+
+const ExperimentTitleBox = styled.div `
+    position: relative;
+    top: 15px;
+    left: 15px;
+    width: 220px;
+    height: 190px;
+    padding-top: 10px;
+    background: #FFFFFF;
+    border: blue solid 1px;
 `
 
 const ExperimentTitle = styled.h2 `
@@ -19,7 +38,6 @@ const ExperimentTitle = styled.h2 `
     line-height: 36px;
     font-size: 26px;
     color: #0014DD;
-    padding: 16px;
 `
 const ExperimentTags = styled.div `
     display: flex;
@@ -58,28 +76,26 @@ const ExperimentTool = styled.div `
 `
 
 class ExperimentCard extends React.Component {
-    onDelete = () => {
-        const ExperimentCardId = this.props.id;
-        this.props.deleteExperiment(ExperimentCardId);
-    };
-
     render() {
       return (
         <ExperimentCardContainer>
-            <div onClick={this.onDelete}>X</div>
-            <Link to={`/experiments/${this.props.id}`}>
-                <ExperimentTitle>{this.props.title}</ExperimentTitle>
-            </Link>
-            <ExperimentTags>
-                <ExperimentFunnel>{this.props.funnel}</ExperimentFunnel>
-            </ExperimentTags>
-            <ExperimentTools>
-                {
-                    this.props.tools.map(tool => (
-                        <ExperimentTool>{tool.charAt(0)}</ExperimentTool>
-                    ))
-                }
-            </ExperimentTools>
+            <ExperimentCardBox>
+                <Link to={`/experiments/${this.props.id}`}>
+                    <ExperimentTitleBox>
+                        <ExperimentTitle>{this.props.title}</ExperimentTitle>
+                    </ExperimentTitleBox>
+                </Link>
+                <ExperimentTags>
+                    <ExperimentFunnel>{this.props.funnel}</ExperimentFunnel>
+                </ExperimentTags>
+                <ExperimentTools>
+                    {
+                        this.props.tools.map(tool => (
+                            <ExperimentTool>{tool.charAt(0)}</ExperimentTool>
+                        ))
+                    }
+                </ExperimentTools>
+            </ExperimentCardBox>
         </ExperimentCardContainer>
       );
     }

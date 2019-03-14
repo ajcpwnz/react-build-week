@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { getExperimentsAsync, deleteExperiment } from '../../actions/actionCreators';
+import { getExperimentsAsync } from '../../actions/actionCreators';
 import ExperimentCard from './ExperimentCard';
 import styled from 'styled-components';
 
@@ -85,8 +85,7 @@ const mapStateToProps = state => ({
   
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-      getExperimentsAsync,
-      deleteExperiment
+      getExperimentsAsync
     }, dispatch);
   }
   
