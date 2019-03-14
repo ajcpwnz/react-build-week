@@ -1,28 +1,62 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-class App extends Component {
+import WebsiteHome from './components/website/WebsiteHome';
+import AppLayout from './components/app/AppLayout';
+import Experiments from './components/app/Experiments';
+import AddExperimentForm from './components/app/AddExperimentForm';
+import Experiment from './components/app/Experiment';
+import Filter from './components/app/Filter';
+import Tags from './components/app/Tags';
+import EditExperimentForm from './components/app/EditExperimentForm';
+
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <>
+          <Route
+              exact path='/'
+              render={() => (
+                  <WebsiteHome />
+              )}
+          />
+          <Route
+            exact path='/experiments'
+            render={() => (
+              <AppLayout>
+                <Filter />
+                <Tags />
+                <Experiments />
+              </AppLayout>
+            )}
+          />
+          <Route
+            exact path='/form/add'
+            render={() => (
+              <AppLayout>
+                <AddExperimentForm />
+              </AppLayout>
+            )}
+          />
+          <Route
+          exact path='/experiments/:id'
+          render={(props) => (
+          <AppLayout>
+              <Experiment {...props} />
+          </AppLayout>
+          )}
+        />
+        <Route
+          exact path='/experiments/:id/edit'
+          render={() => (
+          <AppLayout>
+              <EditExperimentForm />
+          </AppLayout>
+          )}
+        />
+        </>
+      </Router>
     );
   }
 }
-
-export default App;
