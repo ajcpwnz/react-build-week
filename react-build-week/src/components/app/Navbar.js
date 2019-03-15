@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getExperimentsAsync, searchExperiments } from '../../actions/actionCreators';
 import styled from 'styled-components';
-import settings from './img/settings.png';
+import maxime from './img/maxime.png';
 
 const NavbarContainer = styled.div `
     display: flex;
@@ -18,7 +18,7 @@ const NavbarContainer = styled.div `
 `
 
 const NavbarSearch = styled.input `
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: 38px;
     height: 30px;
     width: 300px;
@@ -27,19 +27,17 @@ const NavbarSearch = styled.input `
 `
 const NavbarSettings = styled.div `
     position: absolute;
-    right: 200px;
-    margin-top: 20px;
+    right: 180px;
+    margin-top: 23px;
 `
 
-const NavbarProfile = styled.div `
+const NavbarProfile = styled.img `
     position: absolute;
     right: 120px;
+    margin-top: 11px;
     border-radius: 100px;
-    background-color: #0014DD;
-    color: white;
-    padding: 12px 15px;
-    font-size: 16px;
-    margin-top: 10px;
+    height: 40px;
+    width: 40px;
 `
 
 
@@ -65,9 +63,9 @@ class Navbar extends React.Component {
             >
             </NavbarSearch>
             <NavbarSettings>
-                <img src={settings} alt="Settings"/>
+                <p>Maxime Salomon</p>
             </NavbarSettings>
-            <NavbarProfile>M</NavbarProfile>
+            <NavbarProfile src={maxime} height="40px" width="40px"></NavbarProfile>
         </NavbarContainer>
       );
     }

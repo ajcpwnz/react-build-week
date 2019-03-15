@@ -9,13 +9,15 @@ const FilterContainer = styled.div `
     display: flex;
     height: 64px;
     border-bottom: 0.5px solid rgba(151, 151, 151, 0.38);
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #000000;
 `
 const FilterLeft = styled.div `
     display: flex;
     margin-left: 40px;
     width: 420px;
     justify-content: space-between;
-    margin-top: 25px;
 `
 
 const FilterRight = styled.div `
@@ -32,12 +34,14 @@ const FilterRight = styled.div `
 
 const FunnelFilter = styled.div `
     list-style-type: none;
-    width: 200px;
+    width: 136px;
+    padding-top: 25px;
 `
 
 const CategoryFilter = styled.div `
     list-style-type: none;
-    width: 200px;
+    width: 136px;
+    padding-top: 25px;
 `
 
 const CategoryDropdown = styled.ul `
@@ -48,12 +52,23 @@ const CategoryDropdown = styled.ul `
 
 const ToolsFilter = styled.div `
     list-style-type: none;
-    width: 200px;
+    width: 150px;
+    padding-left: 20px;
+    padding-top: 25px;
+    padding-bottom: 24px;
+    &:hover {
+        background: rgba(0, 20, 221, 0.03);
+    }
 `
 
 const ToolsDropdown = styled.ul `
+    line-height: 30px;
     &.hide {
         display: none;
+    &input[type=checkbox]:checked + label {
+        color: #f00;
+        font-style: normal;
+    }
   }
 `
 

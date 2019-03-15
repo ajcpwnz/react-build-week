@@ -34,7 +34,7 @@ const TagsContent = styled.p `
     color: #0014DD;
 `
 
-const tagslistmock = ["Acquisition", "Revenue", "Virality", "Conversion", "Engagement", "Other"]
+const tagslistmock = ["Acquisition", "Revenue", "Virality"]
 
 export default function Tags() {
   return (

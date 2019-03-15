@@ -23,11 +23,11 @@ export default class App extends Component {
           />
           <Route
             exact path='/experiments'
-            render={() => (
+            render={(props) => (
               <AppLayout>
                 <Filter />
                 <Tags />
-                <Experiments />
+                <Experiments {...props} />
               </AppLayout>
             )}
           />
