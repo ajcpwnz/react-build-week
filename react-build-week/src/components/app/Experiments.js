@@ -29,13 +29,20 @@ const ExperimentsListing = styled.h1 `
 
 const AddExperiment = styled.div `
     position: fixed;
+    height: 54px;
+    width: 54px;
     bottom: 20px;
     right: 20px;
-    font-size: 40px;
-    color: blue;
-    border: 1px solid blue;
-    border-radius: 100px;
-    padding: 8px 16px;
+    font-size: 50px;
+    font-family: 'Poppins';
+    color: #FEFEFE;
+    background: #0014DD;
+    border-radius: 40px;
+`
+
+const AddExperimentCross = styled.div `
+    margin-top: 3px;
+    margin-left: 10px;
 `
 
 export class Experiments extends React.Component {
@@ -49,7 +56,7 @@ export class Experiments extends React.Component {
     // }
     return (
         <>
-            <ExperimentsListing>Experiments Listing ({this.props.numberOfExperiments})</ExperimentsListing>
+            <ExperimentsListing>Experiments Listing {/*({this.props.numberOfExperiments}) */} </ExperimentsListing>
             <ExperimentsContainer>
                 {
                 this.props.experiments.map(experiment => (
@@ -66,7 +73,11 @@ export class Experiments extends React.Component {
                     </>
                 ))
                 }
-                <Link to="/form/add"><AddExperiment>+</AddExperiment></Link>
+                <Link to="/form/add">
+                    <AddExperiment>
+                        <AddExperimentCross>+</AddExperimentCross>
+                    </AddExperiment>
+                </Link>
             </ExperimentsContainer>
         </>
     );
@@ -86,7 +97,7 @@ const getFilteredExperimentsSelector = (experimentsArray, state) => {
 
 const mapStateToProps = state => ({
     experiments: getFilteredExperimentsSelector(getExperimentsBySearchTitle(state), state),
-    numberOfExperiments: state.experiments.allExperiments.length,
+    // numberOfExperiments: state.experiments.allExperiments.length,
   });
   
   function mapDispatchToProps(dispatch) {
