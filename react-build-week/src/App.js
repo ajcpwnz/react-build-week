@@ -9,6 +9,7 @@ import Experiment from './components/app/Experiment';
 import Filter from './components/app/Filter';
 import Tags from './components/app/Tags';
 import EditExperimentForm from './components/app/EditExperimentForm';
+import Tools from './components/app/Tools/Tools';
 
 export default class App extends Component {
   render() {
@@ -55,6 +56,16 @@ export default class App extends Component {
           </AppLayout>
           )}
         />
+        <Route
+            exact path='/tools'
+            render={() => (
+              <AppLayout>
+                <Filter />
+                <Tags />
+                <Tools />
+              </AppLayout>
+            )}
+          />
         </>
       </Router>
     );
