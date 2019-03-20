@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import logo from './img/logo_croissant.png';
 import listing from './img/listing.png';
 import experiment from './img/experiment.png';
+import tool from './img/tool.png';
+import toolInactive from './img/tool-inactive.png';
 import { Link } from 'react-router-dom';
 
 const SidebarContainer = styled.div `
@@ -34,6 +36,12 @@ const SidebarExperiment = styled.div `
     left: 24px;
 `
 
+const SidebarTool = styled.div `
+    position: fixed;
+    top: 216px;
+    left: 24px;
+`
+
 export default class Sidebar extends React.Component {
     render() {  
       return (
@@ -53,6 +61,11 @@ export default class Sidebar extends React.Component {
               <img src={experiment} alt="Experiment"/>
             </Link>
           </SidebarExperiment>
+          <SidebarTool>
+              <Link to="tools">
+                <img src={window.location.pathname == '/tools' ? tool : toolInactive} alt="Tool"/>
+              </Link>
+          </SidebarTool>
         </SidebarContainer>
       );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getExperimentsAsync, searchExperiments } from '../../actions/actionCreators';
+import { getExperimentsAsync, searchExperiments, searchTools } from '../../actions/actionCreators';
 import styled from 'styled-components';
 import settings from './img/settings.png';
 
@@ -54,6 +54,7 @@ class Navbar extends React.Component {
         const onSearch = search => {
             if (search.keyCode === 13) {
                 this.props.searchExperiments(this.state.searchInput);
+                this.props.searchTools(this.state.searchInput);
             }
         }
       return (
@@ -80,7 +81,8 @@ const mapStateToProps = state => ({
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getExperimentsAsync,
-        searchExperiments
+        searchExperiments,
+        searchTools
     }, dispatch);
   }
   

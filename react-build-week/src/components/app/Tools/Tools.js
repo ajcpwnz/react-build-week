@@ -21,6 +21,16 @@ const ToolsTitle = styled.h2 `
     margin-bottom: 71px;
     margin-left: 13px;
 `
+const AddTool = styled.div `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 40px;
+    color: blue;
+    border: 1px solid blue;
+    border-radius: 100px;
+    padding: 8px 16px;
+`
 
 class Tools extends Component {
     componentDidMount() {
@@ -34,12 +44,14 @@ class Tools extends Component {
                 {
                     this.props.tools.map(tool => (
                         <ToolCard
+                            key={tool.id} 
                             title={tool.title}
                             logo={tool.logo}
                             website={tool.website}
                         />
                     ))
                 }
+                <Link to="/tools/add"><AddTool>+</AddTool></Link>
             </ToolsContainer>
         )
     }

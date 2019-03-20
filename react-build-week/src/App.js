@@ -10,6 +10,7 @@ import Filter from './components/app/Filter';
 import Tags from './components/app/Tags';
 import EditExperimentForm from './components/app/EditExperimentForm';
 import Tools from './components/app/Tools/Tools';
+import AddToolForm from './components/app/Tools/AddToolForm';
 
 export default class App extends Component {
   render() {
@@ -65,9 +66,17 @@ export default class App extends Component {
                 <Tools />
               </AppLayout>
             )}
+        />
+                <Route
+            exact path='/tools/add'
+            render={() => (
+              <AppLayout>
+                <AddToolForm />
+              </AppLayout>
+            )}
           />
         </>
-      </Router>
+      </Router> 
     );
   }
 }
