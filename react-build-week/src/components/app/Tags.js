@@ -36,7 +36,7 @@ const TagsContent = styled.p `
 
 const tagslistmock = ["Acquisition", "Revenue", "Virality", "Conversion", "Engagement", "Other"]
 
-export default function Tags() {
+export default function Tags(props) {
   return (
     <TagsContainer>
         <TagsList>

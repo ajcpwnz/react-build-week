@@ -15,6 +15,7 @@ const NavbarContainer = styled.div `
     background: #FFFFFF;
     border-bottom: 0.5px solid rgba(151, 151, 151, 0.38);
     box-sizing: border-box;
+    z-index: 1;
 `
 
 const NavbarSearch = styled.input `

@@ -65,7 +65,7 @@ const getToolsBySearchTitle = (state) => {
 
 const getFilteredToolsSelector = (toolsArray, state) => {
     const { activeFilter } =  state.tools
-    return Object.values(activeFilter).some(i => i) ?  toolsArray.filter((tool) => tool.tools.some( i => activeFilter[i])) : toolsArray;
+    return Object.values(activeFilter).some(i => i) ?  toolsArray.filter((tool) => tool.category.some( i => activeFilter[i])) : toolsArray;
 }
 
 const mapStateToProps = state => ({

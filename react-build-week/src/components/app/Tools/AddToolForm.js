@@ -53,8 +53,8 @@ export class AddToolForm extends React.Component {
 
     const newTool = {
       title: titleInput.value,
-      category: categoryInput.value,
-      tools: ["Facebook Ads", "Google Analytics"]
+      category: [categoryInput.value],
+      website: websiteInput.value
     };
 
     this.props.addTool(newTool).then(this.redirectToTools);

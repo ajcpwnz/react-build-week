@@ -5,7 +5,7 @@ import listing from './img/listing.png';
 import experiment from './img/experiment.png';
 import tool from './img/tool.png';
 import toolInactive from './img/tool-inactive.png';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const SidebarContainer = styled.div `
     position: fixed;
@@ -62,9 +62,9 @@ export default class Sidebar extends React.Component {
             </Link>
           </SidebarExperiment>
           <SidebarTool>
-              <Link to="tools">
-                <img src={window.location.pathname == '/tools' ? tool : toolInactive} alt="Tool"/>
-              </Link>
+              <NavLink to="/tools">
+                <img src={window.location.pathname.includes('/tools') ? tool : toolInactive} alt="Tool"/>
+              </NavLink>
           </SidebarTool>
         </SidebarContainer>
       );
